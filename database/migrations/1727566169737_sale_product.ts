@@ -9,6 +9,7 @@ export default class extends BaseSchema {
       table.integer('sale_id').unsigned().references('sales.id')
       table.integer('product_id').unsigned().references('products.id')
       table.unique(['sale_id', 'product_id'])
+      table.integer('quantity')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
