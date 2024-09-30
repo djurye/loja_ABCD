@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node ace serve --watch",
+    "dev": "nodemon ace serve --watch",
     "build": "node ace build --production",
     "start": "node server.js",
     "test": "node ace test"
@@ -15,6 +15,7 @@
     "@types/proxy-addr": "^2.0.3",
     "@types/source-map-support": "^0.5.10",
     "adonis-preset-ts": "^2.1.0",
+    "nodemon": "^3.1.7",
     "pino-pretty": "^11.2.2",
     "typescript": "~4.6",
     "youch": "^3.3.3",
