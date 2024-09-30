@@ -31,5 +31,12 @@ services:
     ports:
       - "${PG_PORT}:${PG_PORT}"
 
+  adminer:
+      image: adminer
+      container_name: adminer-db
+      restart: always
+      ports:
+        - 8080:8080
+        
 volumes:
   postgres_volume:
