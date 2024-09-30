@@ -9,15 +9,15 @@ export default class SalesSeeder extends BaseSeeder {
     const sales = await Sale.createMany([
       {
         date: DateTime.fromISO('2024-09-01'), // Usando DateTime para datas
-        total: 1500.00,
+        total: 2849.97,
       },
       {
         date: DateTime.fromISO('2024-09-10'), // Usando DateTime para datas
-        total: 800.00,
+        total: 2199.97,
       },
       {
         date: DateTime.fromISO('2024-09-15'), // Usando DateTime para datas
-        total: 1200.00,
+        total: 3449.96,
       },
     ])
 
@@ -36,8 +36,8 @@ export default class SalesSeeder extends BaseSeeder {
     })
 
     await sales[2].related('products').attach({
-      5: { quantity: 3 },  // Produto 5 com quantidade 3
-      6: { quantity: 1 },  // Produto 6 com quantidade 1
+      2: { quantity: 3 },  // Produto 5 com quantidade 3
+      5: { quantity: 1 },  // Produto 6 com quantidade 1
     })
   }
 }
