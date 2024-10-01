@@ -1,0 +1,272 @@
+openapi: 3.0.0
+info:
+  title: Loja_ABCD API Documentation
+  description: API to to manipulate products and sales from Loja_API
+  version: 1.0.0
+paths:
+  /product:
+    get:
+      tags:
+        - Products
+      summary: Read products.
+      description: Return a full list of Products
+      responses:
+        '200':
+          description: List all products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    price:
+                      type: number
+                      format: float
+                    stock:
+                      type: integer
+                  example:
+                    name: iPhone 14 Pro
+                    description: octacore...
+                    price: 7800.23
+                    stock: 23
+    post:
+      tags:
+        - Products
+      summary: Create a product.
+      description: Add a new product to the list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                stock:
+                  type: integer
+      responses:
+        '201':
+          description: Product created
+  /product/{id}:
+    get:
+      tags:
+        - Products
+      summary: Read product by ID.
+      description: Return a product by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product to get
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  description:
+                    type: string
+                  price:
+                    type: number
+                    format: float
+                  stock:
+                    type: integer
+                example:
+                  name: Samsung S15+
+                  description: octacore...
+                  price: 7800.23
+                  stock: 23
+        '404':
+          description: Product not found
+    put:
+      tags:
+        - Products
+      summary: Update a product.
+      description: Update a product by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                stock:
+                  type: integer
+      responses:
+        '200':
+          description: Product updated
+        '404':
+          description: Product not found
+    delete:
+      tags:
+        - Products
+      summary: Delete a product.
+      description: Delete a product by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the product to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Product deleted
+        '404':
+          description: Product not found
+  /sale:
+    get:
+      tags:
+        - Sales
+      summary: Read sales.
+      description: Return a full list of Sales
+      responses:
+        '200':
+          description: List all sales
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    productId:
+                      type: integer
+                    quantity:
+                      type: integer
+                    totalPrice:
+                      type: number
+                      format: float
+                  example:
+                    productId: 1
+                    quantity: 2
+                    totalPrice: 15600.46
+    post:
+      tags:
+        - Sales
+      summary: Create a sale.
+      description: Add a new sale to the list
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                quantity:
+                  type: integer
+      responses:
+        '201':
+          description: Sale created
+  /sale/{id}:
+    get:
+      tags:
+        - Sales
+      summary: Read sale by ID.
+      description: Return a sale by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the sale to get
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sale found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  productId:
+                    type: integer
+                  quantity:
+                    type: integer
+                  totalPrice:
+                    type: number
+                    format: float
+                example:
+                  productId: 1
+                  quantity: 2
+                  totalPrice: 15600.46
+        '404':
+          description: Sale not found
+    put:
+      tags:
+        - Sales
+      summary: Update a sale.
+      description: Update a sale by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the sale to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          description: Sale updated
+        '404':
+          description: Sale not found
+    delete:
+      tags:
+        - Sales
+      summary: Delete a sale.
+      description: Delete a sale by its ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the sale to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Sale deleted
+        '404':
+          description: Sale not found
