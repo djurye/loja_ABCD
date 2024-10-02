@@ -31,6 +31,19 @@ services:
     ports:
       - "${PG_PORT}:${PG_PORT}"
 
+  dbtest:
+    image: postgres:14
+    container_name: postgres-db
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+      - ./dockerConfig/postgres-dev-init.sql:/docker-entrypoint-initdb.d/init.sql 
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB_NAME}
+    ports:
+      - "${PG_PORT}:${PG_PORT}"
+
   adminer:
       image: adminer
       container_name: adminer-db

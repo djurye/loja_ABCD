@@ -34,3 +34,5 @@ Route.get('/sale/:id','SaleController.index')
 Route.post('/sale','SaleController.store')
 Route.put('/sale/:id','SalesController.update')
 Route.delete('/sale/:id','SalesController.destroy')
+
+Route.get('/api-docs', 'SwaggersController.index')
